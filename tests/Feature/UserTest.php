@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Enums\LanguageEnum;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\CreatesApplication;
@@ -32,5 +33,43 @@ class UserTest extends TestCase
 
         unset($user['password']);
         $response->assertStatus(201)->assertJson($user);
+    }
+
+    /**
+     * Log in the user from endpoint
+     * @test
+     * @covers UserController::store
+     * */
+    public function login_user_success(): void
+    {
+        /** @var User */
+        $user = User::factory([
+            "password" => "123456",
+        ])->create();
+        $response = $this->post('/api/login', [
+            "email" => $user->email,
+            "password" => "123456",
+        ]);
+
+        $response->assertStatus(200)->assertJson($user->toArray());
+    }
+
+    /**
+     * Log in the user from endpoint
+     * @test
+     * @covers UserController::store
+     * */
+    public function login_user_failed(): void
+    {
+        /** @var User */
+        $user = User::factory([
+            "password" => "123456",
+        ])->create();
+        $response = $this->post('/api/login', [
+            "email" => $user->email,
+            "password" => "1234",
+        ]);
+
+        $response->assertStatus(401);
     }
 }

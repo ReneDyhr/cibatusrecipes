@@ -11,7 +11,7 @@
 			"extensions": [
 				"DEVSENSE.phptools-vscode",
 				"eamodio.gitlens",
-				"ikappas.phpcs",
+				"open-southeners.laravel-pint",
 				"dbaeumer.vscode-eslint",
 				"kumar-harsh.graphql-for-vscode",
 				"apollographql.vscode-apollo",

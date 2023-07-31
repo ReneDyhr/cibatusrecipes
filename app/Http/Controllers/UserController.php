@@ -15,7 +15,12 @@ class UserController extends Controller
             'birthdate' => 'required',
             'language' => 'required',
         ]);
+
+        $fields = [
+            ...$request->all(),
+            "ip" => \Request::ip(),
+        ];
         
-        return response()->json(User::create($request->all()), 201);
+        return response()->json(User::create($fields), 201);
     }
 }

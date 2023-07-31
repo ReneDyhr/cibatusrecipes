@@ -27,7 +27,6 @@ class UserTest extends TestCase
             "name" => $this->faker()->name(),
             "birthdate" => $this->faker()->date(),
             "language" => LanguageEnum::DANISH->value,
-            "ip" => $this->faker()->ipv4(),
         ];
         $response = $this->post('/api/user', $user);
 
@@ -57,7 +56,7 @@ class UserTest extends TestCase
     /**
      * Log in the user from endpoint
      * @test
-     * @covers UserController::store
+     * @covers LoginController::authenticate
      * */
     public function login_user_failed(): void
     {

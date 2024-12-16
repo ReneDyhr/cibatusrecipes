@@ -1,6 +1,6 @@
 // https://aka.ms/devcontainer.json
 {
-	"name": "Existing Docker Compose (Extend)",
+	"name": "CibatusRecipes",
 	"dockerComposeFile": [
 		"../docker-compose.yml"
 	],
@@ -13,8 +13,6 @@
 				"eamodio.gitlens",
 				"open-southeners.laravel-pint",
 				"dbaeumer.vscode-eslint",
-				"kumar-harsh.graphql-for-vscode",
-				"apollographql.vscode-apollo",
 				"bradlc.vscode-tailwindcss",
 				"onecentlin.laravel-blade",
 				"amiralizadeh9480.laravel-extra-intellisense"

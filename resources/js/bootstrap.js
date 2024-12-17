@@ -30,3 +30,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
 //     enabledTransports: ['ws', 'wss'],
 // });
+
+$(document).ready(function () {
+    rePinterest();
+});
+var masonry;
+
+function rePinterest() {
+    masonry = $('.list').masonry({
+        // options...
+        itemSelector: '.recipe',
+        gutter: 15,
+        percentPosition: true
+    });
+}

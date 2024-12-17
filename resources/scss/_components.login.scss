@@ -1,5 +1,9 @@
 .login-page, .register-page {
     background: #d2d6de;
+    height: 100vh;
+    top: 0;
+    position: absolute;
+    width: 100vw;
 
     .login-logo,
     .register-logo {

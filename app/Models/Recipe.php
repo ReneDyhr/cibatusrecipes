@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Recipe extends Model
 {
@@ -32,6 +33,14 @@ class Recipe extends Model
     ];
 
     /**
+     * Scope a query to only include recipes of the authenticated user.
+     */
+    public function scopeForAuthUser($query)
+    {
+        return $query->where('user_id', Auth::id());
+    }
+
+    /**
      * Get the categories
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Category, Recipe>
@@ -44,21 +53,21 @@ class Recipe extends Model
     /**
      * Get the ingredients
      *
-     * @return \Illuminate\Database\Eloquent\Relations\hasMany<Ingredient, Recipe>
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany<RecipeIngredient, Recipe>
      */
     public function ingredients()
     {
-        return $this->hasMany(Ingredient::class);
+        return $this->hasMany(RecipeIngredient::class);
     }
 
     /**
      * Get the tags
      *
-     * @return \Illuminate\Database\Eloquent\Relations\hasMany<Tag, Recipe>
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany<RecipeTag, Recipe>
      */
     public function tags()
     {
-        return $this->hasMany(Tag::class);
+        return $this->hasMany(RecipeTag::class);
     }
 
 }

@@ -2,6 +2,7 @@
 
 use App\Livewire\Login;
 use App\Livewire\Recipes;
+use App\Livewire\SingleRecipe;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +22,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', Login::class)->name('login');
 Route::get('/', Recipes::class)->middleware('auth')->name('index');
+Route::get('/recipe/{id}', SingleRecipe::class)->middleware('auth')->name('single');

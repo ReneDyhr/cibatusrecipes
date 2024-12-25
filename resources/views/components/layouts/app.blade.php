@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="/css/font-awesome.css">
     <link rel="stylesheet" href="/css/jquery-ui.css">
     <link rel="stylesheet" href="/css/datetimepicker.min.css">
+    <script>
+        window.userId = @json(auth()->id());
+    </script>
     <script src="/js/jquery.js"></script>
     <script src="/js/masonry.js"></script>
     <script src="/js/jquery-ui.js"></script>

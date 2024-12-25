@@ -6,6 +6,7 @@ use App\Livewire\EditRecipe;
 use App\Livewire\Login;
 use App\Livewire\Recipes;
 use App\Livewire\SingleRecipe;
+use App\Livewire\Tag\Tags;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,3 +35,5 @@ Route::get('/recipe/{id}', SingleRecipe::class)->middleware('auth')->name('singl
 Route::get('/recipe/{id}/edit', EditRecipe::class)->middleware('auth')->name('edit');
 
 Route::get('category/{slug}', Categories::class)->middleware('auth')->name('category');
+
+Route::get('tag/{tag}', Tags::class)->middleware('auth')->name('tag');

@@ -12,7 +12,7 @@
     </a>
     <div class="categories">
         <div class="center">
-            @foreach ($categories as $category)
+            @foreach ($account_categories as $category)
                 <div class="list-group-item" data-toggle="tooltip" data-placement="top"
                 title="{{$category->name}}">
                     <a href="/category/{{$category->slug}}">

@@ -31,7 +31,7 @@
                                 </button>
                             </li>
                             <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Edit">
-                                <a href="139/edit" class="btn btn-none">
+                                <a href="{{$recipe->id}}/edit" class="btn btn-none">
                                     <i class="fa fa-edit"></i>
                                 </a>
                             </li>

@@ -1,5 +1,8 @@
 <?php
 
+use App\Livewire\AddRecipe;
+use App\Livewire\Category\Categories;
+use App\Livewire\EditRecipe;
 use App\Livewire\Login;
 use App\Livewire\Recipes;
 use App\Livewire\SingleRecipe;
@@ -21,5 +24,13 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/login', Login::class)->name('login');
+Route::geT('logout', function () {
+    auth()->logout();
+    return redirect()->route('login');
+})->name('logout');
 Route::get('/', Recipes::class)->middleware('auth')->name('index');
+Route::get('/recipe/add', AddRecipe::class)->middleware('auth')->name('add');
 Route::get('/recipe/{id}', SingleRecipe::class)->middleware('auth')->name('single');
+Route::get('/recipe/{id}/edit', EditRecipe::class)->middleware('auth')->name('edit');
+
+Route::get('category/{slug}', Categories::class)->middleware('auth')->name('category');

@@ -37,7 +37,7 @@
                                 <label>Categories:</label>
                                 <span>
                                     @foreach ($recipe->categories as $index => $category)
-                                        <a href="/category/{{$category->id}}-{{$category->name}}">{{$category->name}}</a>@if($index < count($recipe->categories) - 1), @endif
+                                        <a href="/category/{{$category->slug}}">{{$category->name}}</a>@if($index < count($recipe->categories) - 1), @endif
                                     @endforeach
                                 </span>
                                 <div class="clear"></div>

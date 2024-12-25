@@ -9,6 +9,11 @@
                 <div class="form-group">
                     <input type="password" wire:model="password" class="form-control" tabindex="2" placeholder="Password">
                 </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" wire:model="remember" tabindex="3"> Remember Me
+                    </label>
+                </div>
                 @error('email')
                     <span class="alert-danger">{{ $message }}</span>
                 @enderror

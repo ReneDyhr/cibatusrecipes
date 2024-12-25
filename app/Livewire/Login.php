@@ -12,6 +12,8 @@ class Login extends Component
     #[Validate('required')] 
     public string $password = '';
 
+    public bool $remember = false;
+
     public function mount()
     {
         if (auth()->check()) {
@@ -29,9 +31,10 @@ class Login extends Component
         $this->validate([
             'email' => 'required|email',
             'password' => 'required',
+            'remember' => 'boolean',
         ]);
 
-        if (auth()->attempt(['email' => $this->email, 'password' => $this->password])) {
+        if (auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
             return redirect()->intended(route('index'));
         }
 

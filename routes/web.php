@@ -5,6 +5,7 @@ use App\Livewire\Category\Categories;
 use App\Livewire\EditRecipe;
 use App\Livewire\Login;
 use App\Livewire\Recipes;
+use App\Livewire\SearchRecipe;
 use App\Livewire\SingleRecipe;
 use App\Livewire\Tag\Tags;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,8 @@ Route::geT('logout', function () {
 })->name('logout');
 Route::get('/', Recipes::class)->middleware('auth')->name('index');
 Route::get('/recipe/add', AddRecipe::class)->middleware('auth')->name('add');
+Route::get('recipe/search', SearchRecipe::class)->middleware('auth')->name('search');
+
 Route::get('/recipe/{id}', SingleRecipe::class)->middleware('auth')->name('single');
 Route::get('/recipe/{id}/edit', EditRecipe::class)->middleware('auth')->name('edit');
 

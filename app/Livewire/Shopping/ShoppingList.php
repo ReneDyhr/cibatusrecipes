@@ -25,8 +25,7 @@ class ShoppingList extends Component
 
     public function render()
     {
-        $categories = Category::with('icon')->forAuthUser()->get();
-        return view('livewire.shopping.list', ['title' => 'Shopping List', 'account_categories' => $categories]);
+        return view('livewire.shopping.list', ['title' => 'Shopping List']);
     }
 
     public function updateList()

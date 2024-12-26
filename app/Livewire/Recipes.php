@@ -12,7 +12,6 @@ class Recipes extends Component
     public function render()
     {
         $recipes = Recipe::with(['ingredients', 'tags', 'categories'])->forAuthUser()->orderBy('id', 'DESC')->get();
-        $categories = Category::with('icon')->forAuthUser()->get();
-        return view('livewire.recipes.index', ['title' => 'Home', 'recipes' => $recipes, 'account_categories' => $categories]);
+        return view('livewire.recipes.index', ['title' => 'Home', 'recipes' => $recipes]);
     }
 }

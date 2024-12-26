@@ -24,7 +24,6 @@ class SearchRecipe extends Component
             ->orderBy('id', 'DESC')
             ->get();
 
-        $categories = Category::with('icon')->forAuthUser()->get();
-        return view('livewire.recipes.index', ['title' => 'Search: '.$this->query, 'recipes' => $recipes, 'account_categories' => $categories]);
+        return view('livewire.recipes.index', ['title' => 'Search: '.$this->query, 'recipes' => $recipes]);
     }
 }

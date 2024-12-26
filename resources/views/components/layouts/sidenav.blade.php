@@ -2,7 +2,8 @@
     <div class="header">
         <div class="profile-picture" style=""></div>
         <div class="btn-group">
-            <p class="dropdown-toggle" data-toggle="dropdown">René
+            <p class="dropdown-toggle" data-toggle="dropdown">
+                {{Auth::user()->name}}
                 <span class="caret">
             </p>
             <ul style="left:-50px;" class="dropdown-menu">
@@ -50,15 +51,11 @@
         <h1>Latest 3 Favorites</h1>
         <div class="content">
             <ul>
-                <li>
-                    <a href="/recipe/49">Thai Karry Gryde</a>
-                </li>
-                <li>
-                    <a href="/recipe/35">Squash Spinat Lasagne</a>
-                </li>
-                <li>
-                    <a href="/recipe/69">Afrikansk Jordnøddegryde [6 ser.]</a>
-                </li>
+                @foreach (\App\Models\Recipe::favourites()->forAuthUser()->limit(5)->get() as $recipe)
+                    <li>
+                        <a href="/recipe/{{$recipe->id}}">{{$recipe->name}}</a>
+                    </li>
+                @endforeach
                 <li class="see-more">
                     <a href="/favorites">See more</a>
                 </li>
@@ -71,15 +68,6 @@
         <h1>Latest 3 Shared</h1>
         <div class="content">
             <ul>
-                <li>
-                    <a href="/recipe/69">Afrikansk Jordnøddegryde [6 ser.]</a>
-                </li>
-                <li>
-                    <a href="/recipe/35">Squash Spinat Lasagne</a>
-                </li>
-                <li>
-                    <a href="/recipe/77">Majs Kartoffel Chowder</a>
-                </li>
                 <li class="see-more">
                     <a href="/shared">See more</a>
                 </li>
@@ -96,7 +84,7 @@
         <a class="link" target="_blank" href="https://cibatusrecipes.com/#faq">FaQ</a>
         <br>
         <p>&copy; Copyright 2017 -
-            <a href="https://renedyhr.me" target="_blank">Ren? Dyhr</a>
+            <a href="https://renedyhr.me" target="_blank">René Dyhr</a>
             &
             <a href="https://tbjean.me" target="_blank">Jeanette Pedersen</a>
         </p>

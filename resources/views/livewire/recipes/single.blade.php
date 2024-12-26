@@ -6,47 +6,45 @@
     <div class="content recipe-page">
         <div class="col-12">
             <div class="recipe">
-                <h1>{{$recipe->name}}</h1>
+                <h1>{{$this->recipe->name}}</h1>
     
                 <div class="actions">
-                    <form method="post">
-                        <ul>
-                            <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Favorite">
-                                <button type="submit" name="favorite" class="btn btn-none">
-                                    <i class="fa fa-star "></i>
-                                </button>
-                            </li>
-                            <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Share">
-                                <button type="button" class="btn btn-none" data-toggle="modal" data-target="#share">
-                                    <i class="fa fa-share-alt"></i>
-                                </button>
-                            </li>
-                            <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Print">
-                                <button type="button" class="btn btn-none" data-toggle="modal" data-target="#print">
-                                    <i class="fa fa-print"></i>
-                                </button>
-                            </li>
-                            <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Gallery">
-                                <button type="button" class="btn btn-none" data-toggle="modal" data-target="#gallery">
-                                    <i class="fa fa-photo"></i>
-                                </button>
-                            </li>
-                            <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Edit">
-                                <a href="{{$recipe->id}}/edit" class="btn btn-none">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                            </li>
-                            <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Delete">
-                                <button type="button" class="btn btn-none" data-toggle="modal" data-target="#delete">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </li>
-                        </ul>
-                    </form>
+                    <ul>
+                        <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Favorite">
+                            <button wire:click="toggleFavourite" name="favorite" class="btn btn-none">
+                                <i class="fa fa-star @if($this->recipe->favourite) favorite @endif"></i>
+                            </button>
+                        </li>
+                        <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Share">
+                            <button type="button" class="btn btn-none" data-toggle="modal" data-target="#share">
+                                <i class="fa fa-share-alt"></i>
+                            </button>
+                        </li>
+                        <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Print">
+                            <button type="button" class="btn btn-none" data-toggle="modal" data-target="#print">
+                                <i class="fa fa-print"></i>
+                            </button>
+                        </li>
+                        <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Gallery">
+                            <button type="button" class="btn btn-none" data-toggle="modal" data-target="#gallery">
+                                <i class="fa fa-photo"></i>
+                            </button>
+                        </li>
+                        <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Edit">
+                            <a href="{{$this->recipe->id}}/edit" class="btn btn-none">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </li>
+                        <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Delete">
+                            <button type="button" class="btn btn-none" data-toggle="modal" data-target="#delete">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </li>
+                    </ul>
                 </div>
                 <div class="recipe-list">
                     <ul>
-                        @foreach ($recipe->ingredients as $ingredient)
+                        @foreach ($this->recipe->ingredients as $ingredient)
                             @if (str_starts_with($ingredient->name, '#'))
                                 <li><b>{{substr($ingredient->name, 1)}}</b></li>
                             @else
@@ -55,13 +53,13 @@
                         @endforeach
                 </div>
                 <div class="description">
-                    {!! nl2br(e($recipe->description)) !!}
+                    {!! nl2br(e($this->recipe->description)) !!}
                 </div>
                 <div class="tags">
                     <label>Tags:</label>
                     <span>
-                        @foreach($recipe->tags as $index => $tag)
-                            <a href="/tag/{{$tag->name}}">{{$tag->name}}</a>@if($index < count($recipe->tags) - 1), @endif
+                        @foreach($this->recipe->tags as $index => $tag)
+                            <a href="/tag/{{$tag->name}}">{{$tag->name}}</a>@if($index < count($this->recipe->tags) - 1), @endif
                         @endforeach
                     </span>
                     <div class="clear"></div>
@@ -69,8 +67,8 @@
                 <div class="tags">
                     <label>Categories:</label>
                     <span>
-                        @foreach ($recipe->categories as $index => $category)
-                            <a href="/category/{{$category->id}}-{{$category->name}}">{{$category->name}}</a>@if($index < count($recipe->categories) - 1), @endif
+                        @foreach ($this->recipe->categories as $index => $category)
+                            <a href="/category/{{$category->id}}-{{$category->name}}">{{$category->name}}</a>@if($index < count($this->recipe->categories) - 1), @endif
                         @endforeach
                     </span>
                     <div class="clear"></div>
@@ -79,12 +77,12 @@
             </div>
         </div>
     
-        @if (!empty($recipe->note))
+        @if (!empty($this->recipe->note))
             <div class="col-12">
                 <div class="notes">
                     <h1>Notes</h1>
                     <div class="notes-text">
-                        {!! nl2br(e($recipe->note)) !!}
+                        {!! nl2br(e($this->recipe->note)) !!}
                         <div class="clear"></div>
                     </div>
                 </div>

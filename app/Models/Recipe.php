@@ -21,6 +21,7 @@ class Recipe extends Model
         'description',
         'note',
         'public',
+        'favourite'
     ];
 
     /**
@@ -70,4 +71,14 @@ class Recipe extends Model
         return $this->hasMany(RecipeTag::class);
     }
 
+    public function toggleFavourite()
+    {
+        $this->favourite = !$this->favourite;
+        $this->save();
+    }
+
+    public function scopeFavourites($query)
+    {
+        return $query->where('favourite', true);
+    }
 }

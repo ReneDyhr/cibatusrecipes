@@ -12,10 +12,3 @@ window.Echo = new Echo({
     forceTLS: (import.meta.env.VITE_REVERB_SCHEME ?? 'https') === 'https',
     enabledTransports: ['ws', 'wss'],
 });
-
-
-window.Echo.join('shopping-list.' + window.userId).listen('ShoppingList', (e) => {
-    console.log(e);
-    console.log(e.type);
-    console.log(e.data);
-});

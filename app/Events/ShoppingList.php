@@ -31,7 +31,7 @@ class ShoppingList implements ShouldBroadcastNow
     public function broadcastOn(): array
     {
         return [
-            new PresenceChannel('shopping-list.'.$this->user->id),
+            new PresenceChannel('user.'.$this->user->id),
         ];
     }
 }

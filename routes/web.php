@@ -6,6 +6,7 @@ use App\Livewire\EditRecipe;
 use App\Livewire\Login;
 use App\Livewire\Recipes;
 use App\Livewire\SearchRecipe;
+use App\Livewire\Shopping\ShoppingList;
 use App\Livewire\SingleRecipe;
 use App\Livewire\Tag\Tags;
 use Illuminate\Support\Facades\Route;
@@ -40,3 +41,9 @@ Route::get('/recipe/{id}/edit', EditRecipe::class)->middleware('auth')->name('ed
 Route::get('category/{slug}', Categories::class)->middleware('auth')->name('category');
 
 Route::get('tag/{tag}', Tags::class)->middleware('auth')->name('tag');
+
+Route::get('shopping/list', ShoppingList::class)->middleware('auth')->name('shopping.list');
+
+Route::get('debug', function () {
+    \broadcast(new \App\Events\ShoppingList(\App\Models\User::find(1), 'Test', ['Test']));
+})->middleware('auth')->name('profile');

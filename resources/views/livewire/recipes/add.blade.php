@@ -1,3 +1,4 @@
+@section('title', $title)
 <div>
     @include('components.layouts.sidenav')
     <div id="main">

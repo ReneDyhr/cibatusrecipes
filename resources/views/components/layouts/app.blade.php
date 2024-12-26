@@ -20,7 +20,7 @@
     <script src="/js/jquery.mobile-1.4.5.min.js"></script>
     @vite('resources/scss/app.scss')
     @vite('resources/js/app.js')
-    <title>{{ $title ?? 'Page Title' }}</title>
+    <title>@yield('title', 'Default') - CibatusRecipes</title>
 </head>
 
 <body>

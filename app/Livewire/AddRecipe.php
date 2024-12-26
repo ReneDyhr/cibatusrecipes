@@ -26,7 +26,7 @@ class AddRecipe extends Component
     public function render()
     {
         $categories = Category::with('icon')->forAuthUser()->get();
-        return view('livewire.recipes.add', ['account_categories' => $categories]);
+        return view('livewire.recipes.add', ['title' => 'Add Recipe', 'account_categories' => $categories]);
     }
 
     public function save()

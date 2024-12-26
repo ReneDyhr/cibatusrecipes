@@ -1,3 +1,4 @@
+@section('title', $title)
 <div class="login-page">
     <div class="login-box">
         <div class="login-box-body">

@@ -19,6 +19,6 @@ class SingleRecipe extends Component
     {
         $recipe = Recipe::with(['ingredients', 'tags', 'categories'])->forAuthUser()->where('id', $this->id)->firstOrFail();
         $categories = Category::with('icon')->forAuthUser()->get();
-        return view('livewire.recipes.single', ['recipe' => $recipe, 'account_categories' => $categories]);
+        return view('livewire.recipes.single', ['title' => $recipe->name, 'recipe' => $recipe, 'account_categories' => $categories]);
     }
 }

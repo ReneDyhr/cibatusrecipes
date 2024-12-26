@@ -37,7 +37,7 @@ class EditRecipe extends Component
     {
         $recipe = Recipe::with(['ingredients', 'tags', 'categories'])->forAuthUser()->where('id', $this->id)->firstOrFail();
         $categories = Category::with('icon')->forAuthUser()->get();
-        return view('livewire.recipes.edit', ['recipe' => $recipe, 'account_categories' => $categories]);
+        return view('livewire.recipes.edit', ['title' => 'Edit: '.$recipe->name, 'recipe' => $recipe, 'account_categories' => $categories]);
     }
 
     public function save()

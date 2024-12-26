@@ -26,6 +26,6 @@ class Categories extends Component
             ->orderBy('id', 'DESC')
             ->get();
         $categories = Category::with('icon')->forAuthUser()->get();
-        return view('livewire.recipes.index', ['recipes' => $recipes, 'account_categories' => $categories]);
+        return view('livewire.recipes.index', ['title' => 'Category: '.$this->category->name, 'recipes' => $recipes, 'account_categories' => $categories]);
     }
 }

@@ -23,7 +23,7 @@ class Login extends Component
 
     public function render()
     {
-        return view('livewire.login', ['bodyClass' => 'login-page']);
+        return view('livewire.login', ['title' => 'Login', 'bodyClass' => 'login-page']);
     }
 
     public function login()

@@ -12,6 +12,8 @@ class SingleRecipe extends Component
     public int $id;
     public Recipe $recipe;
 
+    public bool $deleteCheck = false;
+
     public function mount(int $id)
     {
         $this->id = $id;
@@ -25,5 +27,15 @@ class SingleRecipe extends Component
     public function toggleFavourite()
     {
         $this->recipe->toggleFavourite();
+    }
+
+    public function delete()
+    {
+        if ($this->deleteCheck) {
+            $this->recipe->delete();
+            return redirect()->route('index');
+        } else {
+            return redirect()->route('single', $this->recipe->id);
+        }
     }
 }

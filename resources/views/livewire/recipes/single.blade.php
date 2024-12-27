@@ -15,7 +15,7 @@
                                 <i class="fa fa-star @if($this->recipe->favourite) favorite @endif"></i>
                             </button>
                         </li>
-                        <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Share">
+                        {{-- <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Share">
                             <button type="button" class="btn btn-none" data-toggle="modal" data-target="#share">
                                 <i class="fa fa-share-alt"></i>
                             </button>
@@ -29,7 +29,7 @@
                             <button type="button" class="btn btn-none" data-toggle="modal" data-target="#gallery">
                                 <i class="fa fa-photo"></i>
                             </button>
-                        </li>
+                        </li> --}}
                         <li data-toggle="tooltip" data-placement="left" title="" data-original-title="Edit">
                             <a href="{{$this->recipe->id}}/edit" class="btn btn-none">
                                 <i class="fa fa-edit"></i>
@@ -200,7 +200,7 @@
                         <h4 class="modal-title">Delete: Babygrød
                         </h4>
                     </div>
-                    <form method="post">
+                    <form method="post" wire:submit.prevent="delete">
                         <div class="modal-body">
                             <div class="remove-recipe">
                                 <div class="col-12">
@@ -208,7 +208,7 @@
                                         <input disabled="disabled" type="text" class="form-control" value="Babygrød">
                                     </div>
                                     <label class="checkbox-inline">
-                                        <input type="checkbox" name="check" value="1">Are you sure to delete this? This cannot be undone!</label>
+                                        <input type="checkbox" name="check" wire:model="deleteCheck" value="1">Are you sure to delete this? This cannot be undone!</label>
                                 </div>
                                 <div class="clear"></div>
                             </div>
@@ -312,7 +312,7 @@
              */
             function Print(type) {
                 var left = (screen.width / 2) - (600 / 2);
-                var mywindow = window.open('/recipe/print/139/' + type, null, 'height=400,width=600,left=' + left);
+                var mywindow = window.open('/recipe/print/{{$this->recipe->id}}/' + type, null, 'height=400,width=600,left=' + left);
                 // mywindow.document.close();  necessary for IE >= 10
                 mywindow.focus(); // necessary for IE >= 10
                 mywindow.print();

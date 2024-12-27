@@ -31,7 +31,7 @@ class Login extends Component
         $this->validate([
             'email' => 'required|email',
             'password' => 'required',
-            'remember' => 'boolean',
+            'remember' => 'nullable|boolean',
         ]);
 
         if (auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {

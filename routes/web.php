@@ -44,6 +44,8 @@ Route::get('tag/{tag}', Tags::class)->middleware('auth')->name('tag');
 
 Route::get('shopping/list', ShoppingList::class)->middleware('auth')->name('shopping.list');
 
+Route::get('settings/categories', \App\Livewire\Settings\Categories::class)->middleware('auth')->name('settings.categories');
+
 Route::get('debug', function () {
     \broadcast(new \App\Events\ShoppingList(\App\Models\User::find(1), 'Test', ['Test']));
 })->middleware('auth')->name('profile');

@@ -18,7 +18,6 @@ vendor/**/Tests*
 **.gitattributes
 **.sass-cache
 *.env*
-composer.json
 
 *.config.js
 ?ulpfile.js

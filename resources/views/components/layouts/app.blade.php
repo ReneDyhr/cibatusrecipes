@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="/css/datetimepicker.min.css">
     <script>
         window.userId = @json(auth()->id());
+        window.Laravel = {
+            reverbKey: '{{ env('REVERB_APP_KEY') }}',
+            reverbHost: '{{ env('REVERB_HOST') }}',
+            reverbScheme: '{{ env('REVERB_SCHEME') }}',
+            reverbPort: '{{ env('REVERB_PORT') }}',
+        };
     </script>
     <script src="/js/jquery.js"></script>
     <script src="/js/masonry.js"></script>

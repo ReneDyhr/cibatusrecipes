@@ -87,7 +87,7 @@
                                 <select tabindex="5" multiple="multiple" id="selectCategories" wire:model="categories"
                                         class="form-control" style="height:200px;"
                                         data-usesprite="smallIcons">
-                                    @foreach ($account_categories as $index => $category)
+                                    @foreach (\App\Models\Category::with('icon')->forAuthUser()->get() as $index => $category)
                                         <option wire:key="category-{{ $index }}" value="{{$category->id}}"
                                             data-icon="{{$category->icon->class}}"
                                             @if ($recipe->categories->contains($category->id))

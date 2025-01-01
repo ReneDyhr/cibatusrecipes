@@ -70,6 +70,8 @@ class ShoppingList extends Component
         $item->order = $lastOrder->order + 1;
         $item->save();
 
+        $this->updateList();
+
         $this->item = '';
         /** @var \App\Models\User */
         $user = Auth::user();

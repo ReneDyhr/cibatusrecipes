@@ -59,6 +59,10 @@ class ShoppingList extends Component
         ]);
 
         $lastOrder = \App\Models\ShoppingList::forAuthUser()->orderBy('order', 'DESC')->first();
+        if (!$lastOrder) {
+            $lastOrder = new \App\Models\ShoppingList();
+            $lastOrder->order = 0;
+        }
 
         $item = new \App\Models\ShoppingList();
         $item->name = $this->item;

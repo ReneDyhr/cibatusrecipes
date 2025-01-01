@@ -86,6 +86,9 @@ class ShoppingList extends Component
         }
         $item->status = 'checked';
         $item->save();
+
+        $this->updateList();
+
         /** @var \App\Models\User */
         $user = Auth::user();
         \broadcast(new \App\Events\ShoppingList($user, 'update', []));
@@ -96,6 +99,9 @@ class ShoppingList extends Component
         $item = \App\Models\ShoppingList::forAuthUser()->find($id);
         $item->status = 'active';
         $item->save();
+
+        $this->updateList();
+
         /** @var \App\Models\User */
         $user = Auth::user();
         \broadcast(new \App\Events\ShoppingList($user, 'update', []));

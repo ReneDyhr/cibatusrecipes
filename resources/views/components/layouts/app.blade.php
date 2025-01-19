@@ -24,6 +24,7 @@
     <script src="/js/jquery.multi-select.js"></script>
     <script src="/js/jquery.select.js"></script>
     <script src="/js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="/js/navigation.js"></script>
     @vite('resources/scss/app.scss')
     @vite('resources/js/app.js')
     <title>@yield('title', 'Default') - CibatusRecipes</title>

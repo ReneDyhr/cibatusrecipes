@@ -31,9 +31,9 @@
                             <ul id="freezer-items-{{ $freezer->id }}" class="shopping-list ui-sortable">
                                 @foreach($freezer->items as $item)
                                     <li id="freezer-item-{{ $item->id }}" data-id="{{ $item->id }}">
-                                        {{ $item->quantity }} {{ $item->unit }} {{ $item->name }}
+                                        {{ $item->quantity }} {{ $item->name }}
                                         <span class="handle" style="cursor:move;"><i class="fa fa-arrows-v"></i></span>
-                                        <span wire:click="confirmRemoveItem({{ $item->id }})" class="close" style="cursor:pointer;">×</span>
+                                        <span wire:confirm="Are you sure?" wire:click="removeItem({{ $item->id }})" class="close" style="cursor:pointer;">×</span>
                                     </li>
                                 @endforeach
                             </ul>
@@ -41,7 +41,6 @@
                                 <input type="hidden" wire:model.defer="freezerId" value="{{ $freezer->id }}" />
                                 <input type="text" wire:model.defer="itemName.{{ $freezer->id }}" placeholder="Item name" class="border rounded px-2 py-1 w-24" />
                                 <input type="number" wire:model.defer="itemQuantity.{{ $freezer->id }}" placeholder="Qty" min="1" class="border rounded px-2 py-1 w-16" />
-                                <input type="text" wire:model.defer="itemUnit.{{ $freezer->id }}" placeholder="Unit" class="border rounded px-2 py-1 w-16" />
                                 <button type="submit" class="btn btn-success">Add</button>
                             </form>
                         </div>

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FreezerItem extends Model
 {
-    protected $fillable = ['freezer_id', 'name', 'quantity', 'unit', 'sort_order'];
+    protected $fillable = ['freezer_id', 'name', 'quantity', 'sort_order'];
 
     public function freezer()
     {

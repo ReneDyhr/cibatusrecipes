@@ -13,7 +13,6 @@ class Freezers extends Component
     public $selectedFreezerId = null;
     public $itemName = [];
     public $itemQuantity = [];
-    public $itemUnit = [];
     public $confirmingItemId = null;
 
     protected $rules = [
@@ -57,25 +56,22 @@ class Freezers extends Component
         $this->validate([
             'itemName.' . $freezerId => 'required|string|max:255',
             'itemQuantity.' . $freezerId => 'required|integer|min:1',
-            'itemUnit.' . $freezerId => 'nullable|string|max:50',
         ]);
         
         \App\Models\FreezerItem::create([
             'freezer_id' => $freezerId,
             'name' => $this->itemName[$freezerId],
             'quantity' => $this->itemQuantity[$freezerId],
-            'unit' => $this->itemUnit[$freezerId],
         ]);
         $this->itemName[$freezerId] = '';
         $this->itemQuantity[$freezerId] = '';
-        $this->itemUnit[$freezerId] = '';
         $this->freezers = Freezer::with('items')->orderBy('name')->get();
     }
 
-    public function confirmRemoveItem($itemId)
+    public function removeItem($itemId)
     {
-        $this->confirmingItemId = $itemId;
-        $this->dispatch('show-confirm-modal');
+        \App\Models\FreezerItem::where('id', $itemId)->delete();
+        $this->freezers = Freezer::with('items')->orderBy('name')->get();
 
     }
 
@@ -96,11 +92,5 @@ class Freezers extends Component
         }
         $this->freezers = Freezer::with('items')->orderBy('name')->get();
 
-    }
-
-    public function removeItem($itemId)
-    {
-        \App\Models\FreezerItem::where('id', $itemId)->delete();
-        $this->freezers = Freezer::with('items')->orderBy('name')->get();
     }
 }

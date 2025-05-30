@@ -70,9 +70,6 @@ class Freezers extends Component
         $this->itemQuantity[$freezerId] = '';
         $this->itemUnit[$freezerId] = '';
         $this->freezers = Freezer::with('items')->orderBy('name')->get();
-        /** @var \App\Models\User */
-        $user = Auth::user();
-        \broadcast(new \App\Events\Masonry($user, 'refresh', []));
     }
 
     public function confirmRemoveItem($itemId)
@@ -80,9 +77,6 @@ class Freezers extends Component
         $this->confirmingItemId = $itemId;
         $this->dispatch('show-confirm-modal');
 
-        /** @var \App\Models\User */
-        $user = Auth::user();
-        \broadcast(new \App\Events\Masonry($user, 'refresh', []));
     }
 
     public function removeItemConfirmed()
@@ -102,9 +96,6 @@ class Freezers extends Component
         }
         $this->freezers = Freezer::with('items')->orderBy('name')->get();
 
-        /** @var \App\Models\User */
-        $user = Auth::user();
-        \broadcast(new \App\Events\Masonry($user, 'refresh', []));
     }
 
     public function removeItem($itemId)

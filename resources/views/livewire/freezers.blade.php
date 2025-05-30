@@ -4,8 +4,27 @@
     <div id="main">
         @include('components.layouts.header')
         <div class="content homepage">
-            <div class="col-12 recipe-list">
-                <div class="list">
+            <style>
+                .freezer-list {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                    grid-auto-rows: 1fr;
+                    gap: 0.5rem;
+                    align-items: start;
+                }
+                .recipe {
+                    display: flex;
+                    flex-direction: column;
+                    min-width: 0;
+                }
+                @media (max-width: 600px) {
+                    .freezer-list {
+                        grid-template-columns: 1fr;
+                    }
+                }
+            </style>
+            <div class="col-12">
+                <div class="freezer-list">
                     @foreach($freezers as $freezer)
                         <div class="recipe" style="min-width:260px;max-width:350px;">
                             <h1>{{ $freezer->name }}</h1>

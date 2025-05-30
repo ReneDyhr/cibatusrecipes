@@ -31,19 +31,38 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     enabledTransports: ['ws', 'wss'],
 // });
 
+// Re-initialize Masonry every time .list changes content
+const list = document.querySelector('.recipe-list');
+if (list) {
+    const observer = new MutationObserver(() => {
+        rePinterest();
+        console.log('Masonry layout updated');
+    });
+    observer.observe(list, { childList: true, subtree: false });
+}
+
+// Initial Masonry layout on document ready
 $(document).ready(function () {
     rePinterest();
 });
 var masonry;
 
-function rePinterest() {
+window.rePinterest = function() {
     masonry = $('.list').masonry({
         // options...
         itemSelector: '.recipe',
         gutter: 15,
         percentPosition: true
     });
-}
+};
+
+window.Echo.join('user.' + window.userId).listen('Masonry', (e) => {
+    if (e.type == 'refresh') {
+        setTimeout(() => {
+            rePinterest();
+        }, 100);
+    }
+});
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
